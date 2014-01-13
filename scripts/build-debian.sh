@@ -55,8 +55,6 @@ for F in *.in; do
     > ${F%%.in}
 done
 
-find . -type d -name .svn | xargs rm -rf
-
 debuild || die "debuild failed."
 debuild -S -sa || die "debuild (source) failed."
 

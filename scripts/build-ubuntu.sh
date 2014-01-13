@@ -42,8 +42,6 @@ cd * || die "Failed to enter source dir."
 cp -r $PKG_DIR/debian . || die "Can't copy debian files."
 cd debian || die "Can't enter debian"
 
-find . -type d -name .svn | xargs rm -rf
-
 rm changelog.* || die "Can't remove existing changelog"
 cp $PKG_DIR/ubuntu/control.in . || die "Can't copy Ubuntu control file."
 
