@@ -12,7 +12,8 @@ Build-Depends: debhelper (>= 7.0.50~),
                libfuse-dev,
                libssl-dev,
                libstdc++6-4.6-dev | libstdc++-dev,
-               libxml2-dev
+               libxml2-dev,
+               pkg-config
 Standards-Version: 3.9.3
 
 Package: __PACKAGE_NAME__

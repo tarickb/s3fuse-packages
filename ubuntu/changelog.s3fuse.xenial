@@ -1,0 +1,11 @@
+s3fuse (0.18-1ubuntu1~xenial1~ppa2) xenial; urgency=low
+
+  * Add pkg-config to Build-Depends.
+
+ -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Mon, 15 Aug 2016 19:36:22 +0200
+
+s3fuse (0.18-1ubuntu1~xenial1~ppa1) xenial; urgency=low
+
+  * Initial package for 0.18-1.
+
+ -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Mon, 15 Aug 2016 18:39:18 +0200
