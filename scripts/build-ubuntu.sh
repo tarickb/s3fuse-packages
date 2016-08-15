@@ -66,7 +66,7 @@ debuild -S -sa || die "debuild (source) failed."
 
 cd $PKG_DIR
 
-mv build/ub-build/*.tar.gz output/
+mv build/ub-build/*.tar.[gx]z output/
 mv build/ub-build/*.dsc output/
 mv build/ub-build/*.build output/
 mv build/ub-build/*.changes output/
