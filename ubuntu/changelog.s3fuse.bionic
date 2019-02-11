@@ -1,3 +1,33 @@
+s3fuse (0.23-1ubuntu1~bionic1~ppa1) bionic; urgency=low
+
+  * Initial package for 0.23-1.
+
+ -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Mon, 11 Feb 2019 10:07:00 -0800
+
+s3fuse (0.22-1ubuntu1~bionic1~ppa2) bionic; urgency=low
+
+  * Disable tests.
+
+ -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Mon, 11 Feb 2019 09:09:00 -0800
+
+s3fuse (0.22-1ubuntu1~bionic1~ppa1) bionic; urgency=low
+
+  * Initial package for 0.22-1.
+
+ -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Sun, 10 Feb 2019 23:18:00 -0800
+
+s3fuse (0.21-1ubuntu1~bionic1~ppa2) bionic; urgency=low
+
+  * Update dependencies in control file.
+
+ -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Sun, 10 Feb 2019 22:54:00 -0800
+
+s3fuse (0.21-1ubuntu1~bionic1~ppa1) bionic; urgency=low
+
+  * Initial package for 0.21-1.
+
+ -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Sun, 10 Feb 2019 22:35:00 -0800
+
 s3fuse (0.20-1ubuntu1~bionic1~ppa1) bionic; urgency=low
 
   * Initial package for 0.20-1.
