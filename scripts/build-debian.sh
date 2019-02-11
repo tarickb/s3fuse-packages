@@ -36,7 +36,7 @@ TAR_NAME=${TAR_NAME%%.tar.gz}
 cp $_DIST ${TAR_NAME/-/_}.orig.tar.gz || die "Failed to copy tarball."
 
 tar xfz $_DIST || die "Failed to unpack tarball."
-cd * || die "Failed to enter source dir."
+cd $(find . -mindepth 1 -maxdepth 1 -type d) || die "Failed to enter source dir."
 
 cp -r $PKG_DIR/debian . || die "Can't copy debian files."
 cd debian || die "Can't enter debian"
