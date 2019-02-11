@@ -2,18 +2,15 @@ Source: __PACKAGE_NAME__
 Section: utils
 Priority: extra
 Maintainer: Tarick Bedeir (Debian Development) <tarick@bedeir.com>
-Build-Depends: debhelper (>= 7.0.50~),
-               autotools-dev,
+Build-Depends: debhelper (>= 11~),
+               cmake,
                fuse-utils,
-               libboost-regex-dev,
-               libboost-system-dev,
-               libboost-thread-dev,
                libcurl4-nss-dev | libcurl4-openssl-dev | libcurl4-gnutls-dev,
                libfuse-dev,
                libssl-dev,
                libstdc++6-4.6-dev | libstdc++-dev,
                libxml2-dev
-Standards-Version: 3.9.1
+Standards-Version: 4.1.3
 
 Package: __PACKAGE_NAME__
 Architecture: any
