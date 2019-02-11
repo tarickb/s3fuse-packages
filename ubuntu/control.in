@@ -3,18 +3,16 @@ Section: utils
 Priority: extra
 Maintainer: Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>
 Uploaders: Scott Ritchie <scottritchie@ubuntu.com>
-Build-Depends: debhelper (>= 7.0.50~),
-               autotools-dev,
-               libboost-regex-dev,
-               libboost-system-dev,
-               libboost-thread-dev,
+Build-Depends: debhelper (>= 11~),
+               cmake,
                libcurl4-openssl-dev | libcurl4-nss-dev | libcurl4-gnutls-dev,
                libfuse-dev,
+               libjsoncpp-dev,
                libssl-dev,
                libstdc++6-4.6-dev | libstdc++-dev,
                libxml2-dev,
                pkg-config
-Standards-Version: 3.9.3
+Standards-Version: 4.1.3
 
 Package: __PACKAGE_NAME__
 Architecture: any
