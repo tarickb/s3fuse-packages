@@ -60,8 +60,8 @@ for F in *.in; do
     < $F \
     > ${F%%.in}
 done
+rm -f *.in
 
-debuild || die "debuild failed."
 debuild -S -sa || die "debuild (source) failed."
 
 cd $PKG_DIR
@@ -71,7 +71,6 @@ mv build/ub-build/*.dsc output/
 mv build/ub-build/*.build output/
 mv build/ub-build/*.buildinfo output/
 mv build/ub-build/*.changes output/
-mv build/ub-build/*.deb output/ || die "Can't move .deb files."
 
 rm -rf build/ub-build
 rmdir build 2>/dev/null
