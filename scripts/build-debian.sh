@@ -54,6 +54,7 @@ for F in *.in; do
     < $F \
     > ${F%%.in}
 done
+rm -f *.in
 
 debuild || die "debuild failed."
 debuild -S -sa || die "debuild (source) failed."
