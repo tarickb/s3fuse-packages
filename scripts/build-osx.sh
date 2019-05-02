@@ -28,16 +28,23 @@ cd build/osx-build || die "Can't enter build dir."
 tar xfz $_DIST || die "Can't unpack tarball."
 cd * || die "Can't enter unpacked dir."
 
-PACKAGE_NAME=$(grep "^PACKAGE_NAME=" configure | sed -e "s/^PACKAGE_NAME='//" -e "s/'\$//")
-PACKAGE_VERSION=$(grep "^PACKAGE_VERSION=" configure | sed -e "s/^PACKAGE_VERSION='//" -e "s/'\$//")
+PACKAGE_NAME="$(basename $_DIST)"
+PACKAGE_NAME="${PACKAGE_NAME%%-*}"
+PACKAGE_VERSION="$(basename $_DIST)"
+PACKAGE_VERSION="${PACKAGE_VERSION##*-}"
+PACKAGE_VERSION="${PACKAGE_VERSION%.tar.gz}"
 
 BUILD_DIR=$(pwd)
 
-./configure --enable-darwin --enable-osx-bundle || die "configure failed."
-make || die "make failed."
+mkdir build || die "Can't create build dir."
+cd build || die "Can't enter build dir."
 
-cd man || die "Can't enter man dir."
-make pdfs || die "make pdfs failed."
+OPENSSL_PKGCONFIG_PATH=$(brew info openssl@1.1 | grep PKG_CONFIG_PATH | sed -e 's/^[^"]*"//' -e 's/".*//')
+export PKG_CONFIG_PATH=$OPENSSL_PKGCONFIG_PATH:/usr/local/lib/pkgconfig
+
+cmake -DEnableTests=No -DEnableMacOSBundle=Yes .. || die "CMake failed."
+make || die "make failed."
+make "${PACKAGE_NAME}_man_pdf" || die "make pdfs failed."
 
 cd $PKG_DIR/build/osx-build || die "Can't enter osx-build."
 
@@ -62,13 +69,13 @@ rm -f main.applescript
 
 cp $PKG_DIR/osx/applet MacOS || die "Can't copy applet."
 cp $BUILD_DIR/COPYING $BUILD_DIR/ChangeLog $BUILD_DIR/README Resources || die "Can't copy documents."
-cp $BUILD_DIR/src/base/$PACKAGE_NAME.conf Resources || die "Can't copy config file."
+cp $BUILD_DIR/build/config/$PACKAGE_NAME.conf Resources || die "Can't copy config file."
 cp $PKG_DIR/osx/applet.icns $PKG_DIR/osx/applet.rsrc Resources || die "Can't copy applet resources."
 
 cd $BUILD_DIR || die "Can't enter build dir."
 
-for F in $(grep bin_PROGRAMS src/Makefile.am | sed -e 's/^.*=//'); do
-  cp src/$F $PKG_DIR/build/osx-build/$PACKAGE_NAME.app/Contents/Resources/bin || die "Can't copy binary [$F]."
+for F in $(grep add_executable src/CMakeLists.txt | sed -e 's/^[^(]*(//' -e 's/ .*//' -e "s/\${PROJECT_NAME}/$PACKAGE_NAME/g"); do
+  cp build/src/$F $PKG_DIR/build/osx-build/$PACKAGE_NAME.app/Contents/Resources/bin || die "Can't copy binary [$F]."
 done
 
 cd $PKG_DIR/build/osx-build || die "Can't enter osx-build."
@@ -80,7 +87,7 @@ done
 cd $PKG_DIR || die "Can't enter packaging dir."
 
 mkdir build/osx-build/manual || die "Can't create manual dir."
-cp $BUILD_DIR/man/*.pdf build/osx-build/manual || die "Can't copy manual PDFs."
+cp $BUILD_DIR/build/man/*.pdf build/osx-build/manual || die "Can't copy manual PDFs."
 cp $BUILD_DIR/COPYING $BUILD_DIR/ChangeLog $BUILD_DIR/README build/osx-build || die "Can't copy documents to image root."
 rm -rf $BUILD_DIR || die "Can't remove temporary build dir."
 
