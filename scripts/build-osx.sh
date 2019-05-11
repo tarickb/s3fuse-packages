@@ -80,9 +80,17 @@ done
 
 cd $PKG_DIR/build/osx-build || die "Can't enter osx-build."
 
+mkdir -p "$PACKAGE_NAME.app/Contents/Resources/libs" || die "Can't create libs directory."
+
+ARGS=
 for F in $PACKAGE_NAME.app/Contents/Resources/bin/*; do
-  dylibbundler -od -b -x $F -d $PACKAGE_NAME.app/Contents/Resources/libs
+  ARGS="$ARGS -x $F"
 done
+
+dylibbundler -b -of $ARGS -d $PACKAGE_NAME.app/Contents/Resources/libs
+
+# Manual fixup for libssl
+install_name_tool -change "/usr/local/Cellar/openssl@1.1/1.1.1b/lib/libcrypto.1.1.dylib" "@executable_path/../libs/libcrypto.1.1.dylib" "$PACKAGE_NAME.app/Contents/Resources/libs/libssl.1.1.dylib"
 
 cd $PKG_DIR || die "Can't enter packaging dir."
 
