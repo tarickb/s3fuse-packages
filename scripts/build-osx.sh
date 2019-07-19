@@ -39,7 +39,7 @@ BUILD_DIR=$(pwd)
 mkdir build || die "Can't create build dir."
 cd build || die "Can't enter build dir."
 
-OPENSSL_PKGCONFIG_PATH=$(brew info openssl@1.1 | grep PKG_CONFIG_PATH | sed -e 's/^[^"]*"//' -e 's/".*//')
+OPENSSL_PKGCONFIG_PATH=$(brew list openssl@1.1 | grep pkgconfig | sed -e 's,/[^/]*$,,' | sort -u | head -n 1)
 export PKG_CONFIG_PATH=$OPENSSL_PKGCONFIG_PATH:/usr/local/lib/pkgconfig
 
 cmake -DEnableTests=No -DEnableMacOSBundle=Yes .. || die "CMake failed."
