@@ -42,6 +42,8 @@ cd build || die "Can't enter build dir."
 OPENSSL_PKGCONFIG_PATH=$(brew list openssl@1.1 | grep pkgconfig | sed -e 's,/[^/]*$,,' | sort -u | head -n 1)
 export PKG_CONFIG_PATH=$OPENSSL_PKGCONFIG_PATH:/usr/local/lib/pkgconfig
 
+LIBCRYPTO_PATH="$(brew list openssl@1.1 | grep 'libcrypto\..*\.dylib$')"
+
 cmake -DEnableTests=No -DEnableMacOSBundle=Yes .. || die "CMake failed."
 make || die "make failed."
 make "${PACKAGE_NAME}_man_pdf" || die "make pdfs failed."
@@ -90,7 +92,7 @@ done
 dylibbundler -b -of $ARGS -d $PACKAGE_NAME.app/Contents/Resources/libs
 
 # Manual fixup for libssl
-install_name_tool -change "/usr/local/Cellar/openssl@1.1/1.1.1b/lib/libcrypto.1.1.dylib" "@executable_path/../libs/libcrypto.1.1.dylib" "$PACKAGE_NAME.app/Contents/Resources/libs/libssl.1.1.dylib"
+install_name_tool -change "$LIBCRYPTO_PATH" "@executable_path/../libs/libcrypto.1.1.dylib" "$PACKAGE_NAME.app/Contents/Resources/libs/libssl.1.1.dylib"
 
 cd $PKG_DIR || die "Can't enter packaging dir."
 
