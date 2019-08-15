@@ -1,3 +1,9 @@
+s3fuse (0.31-1ubuntu1~bionic1~ppa1) bionic; urgency=low
+
+  * Initial package for 0.31-1.
+
+ -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Thu, 15 Aug 2019 08:06:00 -0700
+
 s3fuse (0.30-1ubuntu1~bionic1~ppa1) bionic; urgency=low
 
   * Initial package for 0.30-1.
