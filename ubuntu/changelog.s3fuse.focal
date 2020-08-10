@@ -1,0 +1,7 @@
+s3fuse (0.31-1ubuntu1~focal1~ppa1) focal; urgency=low
+
+  * Initial package for 0.31-1.
+
+ -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Mon, 10 Aug 2020 10:50:00 -0700
+
+
