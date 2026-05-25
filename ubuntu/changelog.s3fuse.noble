@@ -1,3 +1,9 @@
+s3fuse (0.37-1ubuntu1~noble1~ppa1) noble; urgency=low
+
+  * Initial package for 0.37-1.
+
+ -- Tarick Bedeir (Ubuntu Development) <tarick@bedeir.com>  Sun, 24 May 2026 16:29:00 -0700
+
 s3fuse (0.36-1ubuntu1~noble1~ppa1) noble; urgency=low
 
   * Initial package for 0.36-1.
